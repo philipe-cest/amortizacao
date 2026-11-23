@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gabarito Passo a Passo • Comparativo PRICE, SAC e SAA | CEST</title>
+    <meta name="author" content="Prof. Msc. Philipe Sampaio Lima">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23002060'/><circle cx='50' cy='50' r='30' fill='%23059669'/><text x='50' y='58' font-size='20' font-weight='bold' fill='white' text-anchor='middle'>GAB</text></svg>">
+    
+    <style>
+        :root {
+            --primary: #002060;
+            --primary-dark: #001138;
+            --primary-light: #003399;
+            --secondary: #0080FF;
+            --secondary-light: #E6F2FF;
+            --background: #F4F7FA;
+            --surface: #FFFFFF;
+            --text-primary: #0F172A;
+            --text-secondary: #475569;
+            --text-muted: #64748B;
+            --border: #CBD5E1;
+            --success: #059669;
+            --warning: #D97706;
+            --danger: #DC2626;
+            --radius-sm: 6px;
+            --radius-md: 12px;
+            --shadow-sm: 0 1px 3px rgba(0, 32, 96, 0.05);
+            --shadow-md: 0 4px 18px -2px rgba(0, 32, 96, 0.08);
+            --max-w: 1120px;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; font-size: 16px; }
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--background);
+            color: var(--text-primary);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            padding-bottom: 5rem;
+        }
+
+        .container { width: 100%; max-width: var(--max-w); margin: 0 auto; padding: 0 1.25rem; }
+
+        header {
+            background-color: var(--surface);
+            border-bottom: 2px solid var(--success);
+            padding: 1.15rem 0;
+            box-shadow: var(--shadow-sm);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .header-content {
+            display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;
+        }
+        .brand-box { display: flex; align-items: center; gap: 12px; }
+        .brand-box svg { width: 38px; height: 38px; flex-shrink: 0; }
+        .brand-titles h1 { font-size: 1.15rem; font-weight: 800; color: var(--primary); line-height: 1.2; }
+        .brand-titles p { font-size: 0.8rem; color: var(--text-muted); font-weight: 600; }
+
+        .btn-nav {
+            font-size: 0.85rem; font-weight: 700; padding: 0.5rem 1rem; border-radius: var(--radius-sm);
+            text-decoration: none; display: inline-flex; align-items: center; gap: 6px; transition: 0.2s;
+            border: 1px solid var(--border); background: var(--secondary-light); color: var(--primary); cursor: pointer;
+        }
+        .btn-nav:hover { background: var(--primary); color: #fff; }
+
+        .intro-card {
+            background: linear-gradient(135deg, #064E3B 0%, #022C22 100%);
+            color: #FFFFFF;
+            padding: 2rem;
+            border-radius: var(--radius-md);
+            margin: 2rem 0;
+            box-shadow: var(--shadow-md);
+        }
+        .intro-title { font-size: 1.65rem; font-weight: 800; margin-bottom: 0.5rem; color: #FFFFFF; }
+        .intro-desc { font-size: 0.95rem; color: rgba(255,255,255,0.88); line-height: 1.6; max-width: 920px; }
+
+        .solution-card {
+            background: var(--surface);
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border);
+            padding: 2rem;
+            margin-bottom: 2.25rem;
+            box-shadow: var(--shadow-sm);
+        }
+        .sol-header {
+            display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;
+            border-bottom: 1.5px solid var(--background); padding-bottom: 0.85rem; margin-bottom: 1.25rem;
+        }
+        .sol-badge {
+            background-color: var(--success); color: #fff; font-size: 0.82rem; font-weight: 800;
+            padding: 4px 14px; border-radius: 20px; text-transform: uppercase;
+        }
+        .sol-theme { font-size: 0.85rem; font-weight: 700; color: var(--primary); text-transform: uppercase; letter-spacing: 0.04em; }
+
+        .step-box {
+            background-color: var(--background);
+            border-left: 4px solid var(--primary);
+            padding: 1rem 1.25rem;
+            border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+            margin: 0.9rem 0;
+            font-size: 0.95rem;
+        }
+        .step-title { font-weight: 800; color: var(--primary); margin-bottom: 0.4rem; display: block; }
+        .formula-line {
+            font-family: monospace; background: #fff; border: 1px solid var(--border);
+            padding: 0.45rem 0.75rem; border-radius: 4px; margin: 0.4rem 0; font-weight: 700; color: var(--primary);
+        }
+
+        .tables-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin: 1rem 0; }
+        .table-wrap { overflow-x: auto; }
+        .fin-table {
+            width: 100%; border-collapse: collapse; font-size: 0.82rem; background: #fff; border: 1px solid var(--border);
+        }
+        .fin-table caption {
+            font-weight: 800; color: var(--primary); padding: 0.5rem; background: var(--secondary-light);
+            border: 1px solid var(--border); border-bottom: none; font-size: 0.86rem;
+        }
+        .fin-table th {
+            background: var(--primary); color: #fff; padding: 0.45rem 0.4rem; text-align: center; font-weight: 700;
+        }
+        .fin-table td {
+            padding: 0.4rem 0.45rem; border-bottom: 1px solid var(--border); text-align: right;
+        }
+        .fin-table td:first-child { text-align: center; font-weight: 700; }
+        .fin-table tr:nth-child(even) { background: var(--background); }
+        .fin-table tr.total-row { background: var(--secondary-light); font-weight: 800; color: var(--primary); }
+
+        .result-highlight {
+            background-color: #ECFDF5; border: 1px solid #A7F3D0; color: #065F46;
+            padding: 1rem 1.25rem; border-radius: var(--radius-sm); font-weight: 700; margin: 1rem 0; font-size: 0.95rem;
+        }
+        .managerial-note {
+            background-color: var(--secondary-light); border-left: 4px solid var(--secondary);
+            padding: 0.85rem 1.25rem; border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+            font-size: 0.92rem; color: var(--primary); margin-top: 0.8rem;
+        }
+
+        .comp-table {
+            width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.88rem; background: #fff;
+        }
+        .comp-table th { background: var(--primary); color: #fff; padding: 0.6rem; text-align: center; border: 1px solid var(--primary-dark); }
+        .comp-table td { padding: 0.6rem; border: 1px solid var(--border); text-align: left; vertical-align: top; }
+        .comp-table td.crit { font-weight: 800; color: var(--primary); background: var(--background); }
+
+        .action-dock {
+            background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-md);
+            padding: 1.5rem 2rem; display: flex; align-items: center; justify-content: space-between;
+            gap: 1.5rem; flex-wrap: wrap; box-shadow: var(--shadow-md); margin-top: 2.5rem;
+        }
+
+        @media (max-width: 960px) {
+            .tables-grid-3 { grid-template-columns: 1fr; }
+        }
+        @media print {
+            body { background: #fff !important; color: #000 !important; padding: 0; }
+            header, .action-dock { display: none !important; }
+            .container { max-width: 100% !important; padding: 0 !important; }
+            .intro-card { background: #064E3B !important; color: #fff !important; -webkit-print-color-adjust: exact; padding: 1.25rem !important; }
+            .solution-card { border: 1px solid #CBD5E1 !important; page-break-inside: avoid; margin-bottom: 1.25rem !important; box-shadow: none !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container header-content">
+            <div class="brand-box">
+                <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="100" height="100" rx="16" fill="#002060"/>
+                    <path d="M20 75 V30 L50 30 L50 75" stroke="#FFFFFF" stroke-width="8" stroke-linejoin="round"/>
+                    <path d="M50 30 L80 30 L80 75" stroke="#FFFFFF" stroke-width="8" stroke-linejoin="round"/>
+                    <path d="M30 52 H70" stroke="#0080FF" stroke-width="8"/>
+                </svg>
+                <div class="brand-titles">
+                    <h1>CEST • Centro Universitário Santa Terezinha</h1>
+                    <p>Curso de Administração • Matemática Financeira • Prof. Msc. Philipe Sampaio Lima</p>
+                </div>
+            </div>
+            <div>
+                <a href="atividade.html" class="btn-nav">&larr; Voltar para Atividade (Enunciados)</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        
+        <section class="intro-card">
+            <h2 class="intro-title">Gabarito Passo a Passo • Comparativo PRICE, SAC e SAA</h2>
+            <p class="intro-desc">
+                Resolução analítica completa das 10 questões da atividade comparativa, contendo memória de cálculo linha a linha, tabelas de evolução financeira e parecer gerencial para exposição no quadro.
+            </p>
+        </section>
+
+        <!-- GABARITO QUESTÃO 01 -->
+        <article class="solution-card">
+            <div class="sol-header">
+                <span class="sol-badge">Gabarito Questão 01</span>
+                <span class="sol-theme">Construção Integral das 3 Tabelas (PV = R$ 12.000 | n = 3 | i = 5% a.m.)</span>
+            </div>
+
+            <div class="step-box">
+                <span class="step-title">Passo 1 — Cálculos Base de Cada Sistema:</span>
+                <div class="formula-line">PRICE: PMT = 12.000 × [ 0,05 / (1 - 1,05^(-3)) ] = 12.000 × 0,36720856 = R$ 4.406,50</div>
+                <div class="formula-line">SAC: Amortização Constante (A) = 12.000 / 3 = R$ 4.000,00 por mês</div>
+                <div class="formula-line">SAA: Juros Mensais Fixos (J) = 12.000 × 0,05 = R$ 600,00 | Amortização no Mês 3 = R$ 12.000,00</div>
+            </div>
+
+            <div class="step-box">
+                <span class="step-title">Passo 2 — Memória de Cálculo Linha a Linha:</span>
+                <strong>• Sistema PRICE:</strong><br>
+                Mês 1: J1 = 12.000 × 0,05 = R$ 600,00 | A1 = 4.406,50 - 600,00 = R$ 3.806,50 | SD1 = 12.000 - 3.806,50 = R$ 8.193,50<br>
+                Mês 2: J2 = 8.193,50 × 0,05 = R$ 409,68 | A2 = 4.406,50 - 409,68 = R$ 3.996,82 | SD2 = 8.193,50 - 3.996,82 = R$ 4.196,68<br>
+                Mês 3: J3 = 4.196,68 × 0,05 = R$ 209,83 | A3 = 4.196,68 (quitação) | PMT3 = 4.196,68 + 209,83 = R$ 4.406,51 | SD3 = R$ 0,00<br><br>
+                <strong>• Sistema SAC:</strong><br>
+                Mês 1: J1 = 12.000 × 0,05 = R$ 600,00 | A1 = R$ 4.000,00 | PMT1 = 4.000 + 600 = R$ 4.600,00 | SD1 = R$ 8.000,00<br>
+                Mês 2: J2 = 8.000 × 0,05 = R$ 400,00 | A2 = R$ 4.000,00 | PMT2 = 4.000 + 400 = R$ 4.400,00 | SD2 = R$ 4.000,00<br>
+                Mês 3: J3 = 4.000 × 0,05 = R$ 200,00 | A3 = R$ 4.000,00 | PMT3 = 4.000 + 200 = R$ 4.200,00 | SD3 = R$ 0,00<br><br>
+                <strong>• Sistema SAA:</strong><br>
+                Mês 1: J1 = R$ 600,00 | A1 = R$ 0,00 | PMT1 = R$ 600,00 | SD1 = R$ 12.000,00<br>
+                Mês 2: J2 = R$ 600,00 | A2 = R$ 0,00 | PMT2 = R$ 600,00 | SD2 = R$ 12.000,00<br>
+                Mês 3: J3 = R$ 600,00 | A3 = R$ 12.000,00 | PMT3 = R$ 12.600,00 | SD3 = R$ 0,00
+            </div>
+
+            <div class="tables-grid-3">
+                <div class="table-wrap">
+                    <table class="fin-table">
+                        <caption>a) Tabela PRICE</caption>
+                        <thead><tr><th>n</th><th>PMT</th><th>Juros</th><th>Amort.</th><th>Saldo</th></tr></thead>
+                        <tbody>
+                            <tr><td>0</td><td>-</td><td>-</td><td>-</td><td>12.000,00</td></tr>
+                            <tr><td>1</td><td>4.406,50</td><td>600,00</td><td>3.806,50</td><td>8.193,50</td></tr>
+                            <tr><td>2</td><td>4.406,50</td><td>409,68</td><td>3.996,82</td><td>4.196,68</td></tr>
+                            <tr><td>3</td><td>4.406,51</td><td>209,83</td><td>4.196,68</td><td>0,00</td></tr>
+                            <tr class="total-row"><td>Tot</td><td>13.219,51</td><td>1.219,51</td><td>12.000,00</td><td>-</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="table-wrap">
+                    <table class="fin-table">
+                        <caption>b) Tabela SAC</caption>
+                        <thead><tr><th>n</th><th>PMT</th><th>Juros</th><th>Amort.</th><th>Saldo</th></tr></thead>
+                        <tbody>
+                            <tr><td>0</td><td>-</td><td>-</td><td>-</td><td>12.000,00</td></tr>
+                            <tr><td>1</td><td>4.600,00</td><td>600,00</td><td>4.000,00</td><td>8.000,00</td></tr>
+                            <tr><td>2</td><td>4.400,00</td><td>400,00</td><td>4.000,00</td><td>4.000,00</td></tr>
+                            <tr><td>3</td><td>4.200,00</td><td>200,00</td><td>4.000,00</td><td>0,00</td></tr>
+                            <tr class="total-row"><td>Tot</td><td>13.200,00</td><td>1.200,00</td><td>12.000,00</td><td>-</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="table-wrap">
+                    <table class="fin-table">
+                        <caption>c) Tabela SAA</caption>
+                        <thead><tr><th>n</th><th>PMT</th><th>Juros</th><th>Amort.</th><th>Saldo</th></tr></thead>
+                        <tbody>
+                            <tr><td>0</td><td>-</td><td>-</td><td>-</td><td>12.000,00</td></tr>
+                            <tr><td>1</td><td>600,00</td><td>600,00</td><td>0,00</td><td>12.000,00</td></tr>
+                            <tr><td>2</td><td>600,00</td><td>600,00</td><td>0,00</td><td>12.000,00</td></tr>
+                            <tr><td>3</td><td>12.600,00</td><td>600,00</td><td>12.000,00</td><td>0,00</td></tr>
+                            <tr class="total-row"><td>Tot</td><td>13.800,00</td><td>1.800,00</td><td>12.000,00</td><td>-</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="result-highlight">
+                d) Comparativo Final: Juros Totais: SAC (R$ 1.200,00) &lt; PRICE (R$ 1.219,51) &lt; SAA (R$ 1.800,00). Desembolso Total: SAC (R$ 13.200,00) &lt; PRICE (R$ 13.219,51) &lt; SAA (R$ 13.800,00).
+            </div>
+        </article>
+
+        <!-- GABARITO QUESTÃO 02 -->
+        <article class="solution-card">
+            <div class="sol-header">
+                <span class="sol-badge">Gabarito Questão 02</span>
+                <span class="sol-theme">Confronto Direto da 1ª e da Última Prestação (PV = R$ 60.000 | n = 6 | i = 2%)</span>
+            </div>
+
+            <div class="step-box">
+                <span class="step-title">a) Cálculo da 1ª e da 6ª Prestação nos Três Sistemas:</span>
+                <strong>1. Sistema PRICE:</strong><br>
+                PMT fixa = 60.000 × 0,17852581 = <strong>R$ 10.711,55</strong> (tanto na 1ª quanto na 6ª parcela).<br><br>
+                <strong>2. Sistema SAC:</strong><br>
+                • Amortização Constante: A = 60.000 / 6 = R$ 10.000,00<br>
+                • 1ª Prestação: J1 = 60.000 × 0,02 = R$ 1.200,00 &rarr; PMT1 = 10.000 + 1.200 = <strong>R$ 11.200,00</strong><br>
+                • 6ª Prestação: Saldo antes da 6ª parcela = R$ 10.000,00 &rarr; J6 = 10.000 × 0,02 = R$ 200,00 &rarr; PMT6 = 10.000 + 200 = <strong>R$ 10.200,00</strong><br><br>
+                <strong>3. Sistema SAA:</strong><br>
+                • 1ª Prestação (apenas juros): PMT1 = 60.000 × 0,02 = <strong>R$ 1.200,00</strong><br>
+                • 6ª Prestação (principal + juros): PMT6 = 60.000 + 1.200 = <strong>R$ 61.200,00</strong>
+            </div>
+
+            <div class="step-box">
+                <span class="step-title">b) Diferença entre 1ª Parcela SAC e Parcela Fixa PRICE:</span>
+                Diferença = PMT1(SAC) - PMT(PRICE) = 11.200,00 - 10.711,55 = <strong>R$ 488,45</strong> a mais no SAC no 1º mês.
+            </div>
+
+            <div class="managerial-note">
+                <strong>c) Análise de Tesouraria do SAA:</strong> Como o SAA não amortiza o principal durante os meses 1 a 5, a empresa precisa constituir uma reserva financeira (<em>sinking fund</em>) ao longo do semestre para suportar o desembolso concentrado de R$ 61.200,00 no 6º mês sem comprometer a liquidez.
+            </div>
+        </article>
+
+        <!-- GABARITO QUESTÃO 03 -->
+        <article class="solution-card">
+            <div class="sol-header">
+                <span class="sol-badge">Gabarito Questão 03</span>
+                <span class="sol-theme">Apuração Analítica de Juros Totais (PV = R$ 100.000 | n = 10 | i = 3%)</span>
+            </div>
+
+            <div class="step-box">
+                <span class="step-title">a) Juros Totais no Sistema PRICE:</span>
+                • Prestação Fixa: PMT = 100.000 × 0,11723051 = R$ 11.723,05<br>
+                • Total Desembolsado: 10 × 11.723,05 = R$ 117.230,50<br>
+                • Juros Totais (PRICE) = 117.230,50 - 100.000,00 = <strong>R$ 17.230,50</strong>
+            </div>
+
+            <div class="step-box">
+                <span class="step-title">b) Juros Totais no Sistema SAC:</span>
+                <div class="formula-line">J_total = [ 100.000 × 0,03 × (10 + 1) ] / 2 = (3.000 × 11) / 2 = 33.000 / 2 = R$ 16.500,00</div>
+            </div>
+
+            <div class="step-box">
+                <span class="step-title">c) Juros Totais no Sistema SAA:</span>
+                <div class="formula-line">J_total = 100.000 × 0,03 × 10 = 3.000 × 10 = R$ 30.000,00</div>
+            </div>
+
+            <div class="result-highlight">
+                d) Economia obtida pelo SAC: Economia vs. PRICE = 17.230,50 - 16.500,00 = R$ 730,50 | Economia vs. SAA = 30.000,00 - 16.500,00 = R$ 13.500,00.
+            </div>
+        </article>
+
+        <!-- GABARITO QUESTÃO 04 -->
+        <article class="solution-card">
+            <div class="sol-header">
+                <span class="sol-badge">Gabarito Questão 04</span>
+                <span class="sol-theme">Saldo Devedor na Metade do Contrato (t = 6 de 12 meses | PV = R$ 240.000 | i = 2%)</span>
+            </div>
+
+            <div class="step-box">
+                <span class="step-title">a) Saldo Devedor após 6ª parcela no SAC:</span>
+                • Amortização mensal: A = 240.000 / 12 = R$ 20.000,00<br>
+                • Total amortizado em 6 meses = 6 × 20.000 = R$ 120.000,00 (50% da dívida)<br>
+                • Saldo Devedor (SAC) = 240.000 - 120.000 = <strong>R$ 120.000,00</strong>
+            </div>
+
+            <div class="step-box">
+                <span class="step-title">b) Saldo Devedor após 6ª parcela no SAA:</span>
+                • No SAA não há amortização intermediária: Total amortizado = R$ 0,00 (0% da dívida)<br>
+                • Saldo Devedor (SAA) = <strong>R$ 240.000,00</strong>
+            </div>
+
+            <div class="step-box">
+                <span class="step-title">c) Saldo Devedor após 6ª parcela na PRICE:</span>
+                • Restam 6 parcelas de R$ 22.694,30:<br>
+                • SD_6 = 22.694,30 × [ (1 - 1,02^(-6)) / 0,02 ] = 22.694,30 × 5,60143089 = <strong>R$ 127.120,55</strong><br>
+                • Total já amortizado na PRICE = 240.000,00 - 127.120,55 = R$ 112.879,45 (<strong>47,03%</strong> da dívida).
+            </div>
+
+            <div class="result-highlight">
+                Comparativo de Amortização na Metade do Prazo (6º mês): SAC amortizou 50,00% | PRICE amortizou 47,03% | SAA amortizou 0,00%.
+            </div>
+        </article>
+
+        <!-- GABARITO QUESTÃO 05 -->
+        <article class="solution-card">
+            <div class="sol-header">
+                <span class="sol-badge">Gabarito Questão 05</span>
+                <span class="sol-theme">Ponto de Inversão na PRICE e Decaimento Linear no SAC (PV = R$ 80.000 | n = 8 | i = 4%)</span>
+            </div>
+
+            <div class="step-box">
+                <span class="step-title">a) Sistema PRICE (PMT = R$ 11.882,23 | SD_3 = R$ 53.063,11):</span>
+                • <strong>Mês 4:</strong> J4 = 53.063,11 × 0,04 = <strong>R$ 2.122,52</strong> | A4 = 11.882,23 - 2.122,52 = <strong>R$ 9.759,71</strong> | SD4 = 53.063,11 - 9.759,71 = R$ 43.303,40<br>
+                • <strong>Mês 5:</strong> J5 = 43.303,40 × 0,04 = <strong>R$ 1.732,14</strong> | A5 = 11.882,23 - 1.732,14 = <strong>R$ 10.150,09</strong><br>
+                • <strong>Análise da Inversão:</strong> Neste contrato de 8 meses a 4% a.m., a amortização já era maior que os juros desde a 1ª parcela (J1 = R$ 3.200,00 e A1 = R$ 8.682,23), pois o prazo curto faz a parcela iniciar com alta participação de amortização. Em prazos longos (ex.: 36 meses a 4%), os juros iniciam maiores que a amortização e a inversão ocorre na segunda metade do contrato.
+            </div>
+
+            <div class="step-box">
+                <span class="step-title">b) Sistema SAC (A = 80.000 / 8 = R$ 10.000,00/mês):</span>
+                • <strong>Mês 4:</strong> Saldo após 3 amortizações = 80.000 - 30.000 = R$ 50.000,00 &rarr; J4 = 50.000 × 0,04 = <strong>R$ 2.000,00</strong> | PMT4 = 10.000 + 2.000 = <strong>R$ 12.000,00</strong><br>
+                • <strong>Mês 5:</strong> Saldo após 4 amortizações = 80.000 - 40.000 = R$ 40.000,00 &rarr; J5 = 40.000 × 0,04 = <strong>R$ 1.600,00</strong> | PMT5 = 10.000 + 1.600 = <strong>R$ 11.600,00</strong><br>
+                • <strong>Decaimento Linear (PA):</strong> A prestação cai exatamente <strong>R$ 400,00 por mês</strong> (Razão = A × i = 10.000 × 0,04).
+            </div>
+
+            <div class="step-box">
+                <span class="step-title">c) Sistema SAA:</span>
+                Nos meses 4 e 5, os juros são fixos em J = 80.000 × 0,04 = <strong>R$ 3.200,00</strong> e a amortização é <strong>R$ 0,00</strong>.
+            </div>
+        </article>
+
+        <!-- GABARITO QUESTÃO 06 -->
+        <article class="solution-card">
+            <div class="sol-header">
+                <span class="sol-badge">Gabarito Questão 06</span>
+                <span class="sol-theme">Engenharia Reversa de Extratos (PV = R$ 50.000 | n = 5 | i = 3%)</span>
+            </div>
+
+            <div class="step-box">
+                <span class="step-title">a) Identificação dos Sistemas:</span>
+                • <strong>Extrato X = Sistema SAC:</strong> As prestações decrescem em progressão aritmética constante de R$ 300,00 por mês (Razão = A × i = 10.000 × 0,03 = R$ 300,00).<br>
+                • <strong>Extrato Y = Sistema SAA:</strong> As 4 primeiras prestações pagam exclusivamente os juros mensais de R$ 1.500,00 (50.000 × 0,03) e a 5ª parcela liquida o principal integral (R$ 50.000,00) somado aos últimos juros.<br>
+                • <strong>Extrato Z = Sistema PRICE:</strong> Todas as prestações possuem o mesmo valor nominal constante (R$ 10.917,73).
+            </div>
+
+            <div class="step-box">
+                <span class="step-title">b) Decomposição da 2ª Prestação de Cada Extrato:</span>
+                • <strong>Extrato X (SAC):</strong> Amortização = <strong>R$ 10.000,00</strong> | Juros = 11.200,00 - 10.000,00 = <strong>R$ 1.200,00</strong> (ou 40.000 × 0,03).<br>
+                • <strong>Extrato Y (SAA):</strong> Amortização = <strong>R$ 0,00</strong> | Juros = <strong>R$ 1.500,00</strong>.<br>
+                • <strong>Extrato Z (PRICE):</strong><br>
+                1º Mês: J1 = 50.000 × 0,03 = R$ 1.500,00 | A1 = 10.917,73 - 1.500,00 = R$ 9.417,73 | SD1 = 50.000 - 9.417,73 = R$ 40.582,27<br>
+                2º Mês: J2 = 40.582,27 × 0,03 = <strong>R$ 1.217,47</strong> | A2 = 10.917,73 - 1.217,47 = <strong>R$ 9.700,26</strong>.
+            </div>
+        </article>
+
+        <!-- GABARITO QUESTÃO 07 -->
+        <article class="solution-card">
+            <div class="sol-header">
+                <span class="sol-badge">Gabarito Questão 07</span>
+                <span class="sol-theme">Quitação Antecipada no 2º Mês (PV = R$ 90.000 | n = 6 | i = 2%)</span>
+            </div>
+
+            <div class="step-box">
+                <span class="step-title">a) Quitação no Sistema PRICE (PMT = R$ 16.067,32):</span>
+                • Mês 1: J1 = 90.000 × 0,02 = R$ 1.800,00 | A1 = 16.067,32 - 1.800,00 = R$ 14.267,32 | SD1 = R$ 75.732,68<br>
+                • Mês 2: J2 = 75.732,68 × 0,02 = R$ 1.514,65 | A2 = 16.067,32 - 1.514,65 = R$ 14.552,67 | SD2 = <strong>R$ 61.180,01</strong> (Valor da quitação).
+            </div>
+
+            <div class="step-box">
+                <span class="step-title">b) Quitação no Sistema SAC (A = 90.000 / 6 = R$ 15.000,00):</span>
+                • Após 2 amortizações de R$ 15.000,00 (total R$ 30.000,00):<br>
+                • SD2 = 90.000 - 30.000 = <strong>R$ 60.000,00</strong> (Valor da quitação).<br>
+                • Parcelas já pagas: PMT1 = 15.000 + 1.800 = R$ 16.800,00 | PMT2 = 15.000 + 1.500 = R$ 16.500,00.
+            </div>
+
+            <div class="step-box">
+                <span class="step-title">c) Quitação no Sistema SAA:</span>
+                • Como nada foi amortizado nos meses 1 e 2, o saldo permanece integral: SD2 = <strong>R$ 90.000,00</strong> (Valor da quitação).<br>
+                • Parcelas já pagas: PMT1 = R$ 1.800,00 | PMT2 = R$ 1.800,00.
+            </div>
+
+            <div class="result-highlight">
+                d) Desembolso Total até a Quitação no 2º Mês:<br>
+                • SAC: 16.800,00 + 16.500,00 + 60.000,00 = R$ 93.300,00 (Juros totais = R$ 3.300,00)<br>
+                • PRICE: 16.067,32 + 16.067,32 + 61.180,01 = R$ 93.314,65 (Juros totais = R$ 3.314,65)<br>
+                • SAA: 1.800,00 + 1.800,00 + 90.000,00 = R$ 93.600,00 (Juros totais = R$ 3.600,00)
+            </div>
+        </article>
+
+        <!-- GABARITO QUESTÃO 08 -->
+        <article class="solution-card">
+            <div class="sol-header">
+                <span class="sol-badge">Gabarito Questão 08</span>
+                <span class="sol-theme">Carência Capitalizada de 2 Meses + 4 Meses de Pagamento (PV = R$ 100.000 | i = 2%)</span>
+            </div>
+
+            <div class="step-box">
+                <span class="step-title">a) Saldo Devedor Capitalizado ao Final da Carência (Mês 2):</span>
+                • Mês 1 (carência): SD_1 = 100.000 × 1,02 = R$ 102.000,00<br>
+                • Mês 2 (carência): SD_2 = 102.000 × 1,02 = <strong>R$ 104.040,00</strong> (Novo principal a amortizar).
+            </div>
+
+            <div class="step-box">
+                <span class="step-title">b) Sistema PRICE (Meses 3 a 6):</span>
+                <div class="formula-line">PMT = 104.040,00 × 0,26262375 = R$ 27.323,37 por mês (nos meses 3, 4, 5 e 6)</div>
+            </div>
+
+            <div class="step-box">
+                <span class="step-title">c) Sistema SAC (Meses 3 a 6):</span>
+                • Amortização Constante: A = 104.040,00 / 4 = <strong>R$ 26.010,00</strong> por mês<br>
+                • 1ª Prestação (Mês 3): J3 = 104.040,00 × 0,02 = R$ 2.080,80 &rarr; PMT3 = 26.010,00 + 2.080,80 = <strong>R$ 28.090,80</strong>
+            </div>
+
+            <div class="step-box">
+                <span class="step-title">d) Sistema SAA (Meses 3 a 6):</span>
+                • Juros mensais sobre o saldo capitalizado: J = 104.040,00 × 0,02 = R$ 2.080,80<br>
+                • Meses 3, 4 e 5: <strong>R$ 2.080,80</strong> por mês | Mês 6: 104.040,00 + 2.080,80 = <strong>R$ 106.120,80</strong>.
+            </div>
+        </article>
+
+        <!-- GABARITO QUESTÃO 09 -->
+        <article class="solution-card">
+            <div class="sol-header">
+                <span class="sol-badge">Gabarito Questão 09</span>
+                <span class="sol-theme">Quadro-Síntese Comparativo Estrutural</span>
+            </div>
+
+            <table class="comp-table">
+                <thead>
+                    <tr>
+                        <th style="width: 22%;">Critério de Análise</th>
+                        <th style="width: 26%;">Sistema PRICE (Francês)</th>
+                        <th style="width: 26%;">Sistema SAC (Constante)</th>
+                        <th style="width: 26%;">Sistema SAA (Americano)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="crit">Valor das Prestações (PMT)</td>
+                        <td><strong>Constantes</strong> durante todo o contrato (PMT fixa).</td>
+                        <td><strong>Decrescentes</strong> em Progressão Aritmética (PA) de razão (-A × i).</td>
+                        <td><strong>Constantes</strong> (apenas juros) até n-1; <strong>parcela única elevada</strong> no último período (PV + J).</td>
+                    </tr>
+                    <tr>
+                        <td class="crit">Valor das Amortizações (A)</td>
+                        <td><strong>Crescentes</strong> em Progressão Geométrica (PG) de razão (1 + i).</td>
+                        <td><strong>Constantes</strong> em todos os períodos: A = PV / n.</td>
+                        <td><strong>Nulas (zero)</strong> até o penúltimo período; <strong>integral (100% do PV)</strong> no vencimento final.</td>
+                    </tr>
+                    <tr>
+                        <td class="crit">Valor dos Juros Periódicos (J)</td>
+                        <td><strong>Decrescentes</strong> de forma não linear (curva côncava).</td>
+                        <td><strong>Decrescentes</strong> de forma linear (PA de razão -A × i).</td>
+                        <td><strong>Constantes</strong> em todos os períodos: J = PV × i.</td>
+                    </tr>
+                    <tr>
+                        <td class="crit">Evolução do Saldo Devedor</td>
+                        <td>Queda lenta no início e acelerada no final.</td>
+                        <td>Queda uniforme e linear desde a 1ª parcela.</td>
+                        <td>Permanece <strong>inalterado (100% do PV)</strong> até o último vencimento.</td>
+                    </tr>
+                    <tr>
+                        <td class="crit">Ranking de Juros Totais Pagos</td>
+                        <td><strong>Intermediário</strong> (maior que SAC e menor que SAA).</td>
+                        <td><strong>Menor custo financeiro</strong> (amortiza o principal mais rápido).</td>
+                        <td><strong>Maior custo financeiro</strong> (incide juros sobre o principal cheio até o fim).</td>
+                    </tr>
+                </tbody>
+            </table>
+        </article>
+
+        <!-- GABARITO QUESTÃO 10 -->
+        <article class="solution-card">
+            <div class="sol-header">
+                <span class="sol-badge">Gabarito Questão 10</span>
+                <span class="sol-theme">Tomada de Decisão Gerencial (PV = R$ 300.000 | n = 5 | i = 2%)</span>
+            </div>
+
+            <div class="step-box">
+                <span class="step-title">a) Indicadores Quantitativos da Captação de R$ 300.000,00:</span>
+                <strong>1. Sistema PRICE:</strong><br>
+                • 1ª e 5ª Prestações: PMT = 300.000 × 0,21215839 = <strong>R$ 63.647,52</strong><br>
+                • Total de Juros: (5 × 63.647,52) - 300.000 = 318.237,60 - 300.000 = <strong>R$ 18.237,60</strong><br><br>
+                <strong>2. Sistema SAC (A = 300.000 / 5 = R$ 60.000,00):</strong><br>
+                • 1ª Prestação: 60.000 + (300.000 × 0,02) = 60.000 + 6.000 = <strong>R$ 66.000,00</strong><br>
+                • 5ª Prestação: 60.000 + (60.000 × 0,02) = 60.000 + 1.200 = <strong>R$ 61.200,00</strong><br>
+                • Total de Juros: [300.000 × 0,02 × (5 + 1)] / 2 = 36.000 / 2 = <strong>R$ 18.000,00</strong><br><br>
+                <strong>3. Sistema SAA:</strong><br>
+                • 1ª Prestação: 300.000 × 0,02 = <strong>R$ 6.000,00</strong><br>
+                • 5ª Prestação: 300.000 + 6.000 = <strong>R$ 306.000,00</strong><br>
+                • Total de Juros: 6.000 × 5 = <strong>R$ 30.000,00</strong>
+            </div>
+
+            <div class="managerial-note">
+                <strong>b) Parecer Técnico de Escolha por Cenário:</strong><br>
+                • <strong>Cenário 1 &rarr; Escolher Sistema SAC:</strong> Como há folga de caixa inicial para suportar a 1ª parcela mais elevada (R$ 66.000,00), o SAC entrega o menor custo total de juros (R$ 18.000,00) e reduz a dívida mais rapidamente.<br>
+                • <strong>Cenário 2 &rarr; Escolher Sistema SAA:</strong> Adequado ao descasamento de receitas da obra, pois exige desembolso mínimo de R$ 6.000,00/mês durante a execução (meses 1 a 4) e concentra a devolução do principal (R$ 306.000,00) no 5º mês, alinhado ao recebimento da venda comercial.<br>
+                • <strong>Cenário 3 &rarr; Escolher Sistema PRICE:</strong> Garante previsibilidade absoluta no orçamento de tesouraria com parcelas idênticas de R$ 63.647,52 do início ao fim, facilitando o controle do capital de giro.
+            </div>
+        </article>
+
+        <div class="action-dock">
+            <div>
+                <h4 style="color:var(--primary); font-size:1.1rem; font-weight:800;">Gabarito Oficial Consolidado • Unidade III</h4>
+                <p style="font-size:0.85rem; color:var(--text-secondary);">Pronto para projeção em sala de aula e hospedagem no GitHub Pages.</p>
+            </div>
+            <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
+                <a href="atividade.html" class="btn-nav">&larr; Ir para Atividade</a>
+                <button class="btn-nav" onclick="window.print()">🖨️ Imprimir Gabarito</button>
+            </div>
+        </div>
+
+    </main>
+
+</body>
+</html>

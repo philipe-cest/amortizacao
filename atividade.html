@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atividade Comparativa • PRICE, SAC e SAA | CEST</title>
+    <meta name="author" content="Prof. Msc. Philipe Sampaio Lima">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23002060'/><circle cx='50' cy='50' r='30' fill='%230080FF'/><text x='50' y='58' font-size='20' font-weight='bold' fill='white' text-anchor='middle'>CMP</text></svg>">
+    
+    <style>
+        :root {
+            --primary: #002060;
+            --primary-dark: #001138;
+            --primary-light: #003399;
+            --secondary: #0080FF;
+            --secondary-light: #E6F2FF;
+            --background: #F4F7FA;
+            --surface: #FFFFFF;
+            --text-primary: #0F172A;
+            --text-secondary: #475569;
+            --text-muted: #64748B;
+            --border: #CBD5E1;
+            --success: #059669;
+            --warning: #D97706;
+            --danger: #DC2626;
+            --radius-sm: 6px;
+            --radius-md: 12px;
+            --shadow-sm: 0 1px 3px rgba(0, 32, 96, 0.05);
+            --shadow-md: 0 4px 18px -2px rgba(0, 32, 96, 0.08);
+            --max-w: 1100px;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; font-size: 16px; }
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--background);
+            color: var(--text-primary);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            padding-bottom: 5rem;
+        }
+
+        .container { width: 100%; max-width: var(--max-w); margin: 0 auto; padding: 0 1.25rem; }
+
+        header {
+            background-color: var(--surface);
+            border-bottom: 2px solid var(--secondary);
+            padding: 1.15rem 0;
+            box-shadow: var(--shadow-sm);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .brand-box { display: flex; align-items: center; gap: 12px; }
+        .brand-box svg { width: 38px; height: 38px; flex-shrink: 0; }
+        .brand-titles h1 { font-size: 1.15rem; font-weight: 800; color: var(--primary); line-height: 1.2; }
+        .brand-titles p { font-size: 0.8rem; color: var(--text-muted); font-weight: 600; }
+
+        .header-actions { display: flex; gap: 0.75rem; align-items: center; }
+        .btn-nav {
+            font-size: 0.85rem; font-weight: 700; padding: 0.5rem 1rem; border-radius: var(--radius-sm);
+            text-decoration: none; display: inline-flex; align-items: center; gap: 6px; transition: 0.2s;
+            border: 1px solid var(--border); background: var(--background); color: var(--primary); cursor: pointer;
+        }
+        .btn-nav:hover { background: var(--secondary); color: #fff; border-color: var(--secondary); }
+        .btn-nav.gabarito { background: #ECFDF5; color: var(--success); border-color: #A7F3D0; }
+        .btn-nav.gabarito:hover { background: var(--success); color: #fff; }
+
+        .intro-card {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: #FFFFFF;
+            padding: 2rem;
+            border-radius: var(--radius-md);
+            margin: 2rem 0;
+            box-shadow: var(--shadow-md);
+        }
+        .intro-badge {
+            display: inline-block; background: rgba(255,255,255,0.15); color: var(--secondary-light);
+            font-size: 0.78rem; font-weight: 700; padding: 4px 12px; border-radius: 20px;
+            text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.75rem;
+        }
+        .intro-title { font-size: 1.65rem; font-weight: 800; margin-bottom: 0.5rem; color: #FFFFFF; }
+        .intro-desc { font-size: 0.96rem; color: rgba(255,255,255,0.88); line-height: 1.6; max-width: 920px; }
+
+        .formula-sheet {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-left: 5px solid var(--secondary);
+            border-radius: var(--radius-md);
+            padding: 1.5rem;
+            margin-bottom: 2.25rem;
+            box-shadow: var(--shadow-sm);
+        }
+        .formula-sheet h3 { font-size: 1.05rem; color: var(--primary); font-weight: 800; margin-bottom: 0.85rem; }
+        .formula-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+        .formula-card {
+            background: var(--background); padding: 0.9rem 1rem; border-radius: var(--radius-sm); border: 1px solid var(--border);
+        }
+        .formula-card h4 { font-size: 0.88rem; color: var(--primary); font-weight: 800; margin-bottom: 0.35rem; }
+        .formula-card p { font-size: 0.83rem; color: var(--text-secondary); line-height: 1.5; font-family: monospace; }
+
+        .question-card {
+            background: var(--surface);
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow-sm);
+        }
+        .q-header {
+            display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;
+            border-bottom: 1.5px solid var(--background); padding-bottom: 0.85rem; margin-bottom: 1.25rem;
+        }
+        .q-badge {
+            background-color: var(--primary); color: #fff; font-size: 0.82rem; font-weight: 800;
+            padding: 4px 14px; border-radius: 20px; text-transform: uppercase;
+        }
+        .q-theme { font-size: 0.85rem; font-weight: 700; color: var(--secondary); text-transform: uppercase; letter-spacing: 0.04em; }
+
+        .q-statement { font-size: 1.05rem; line-height: 1.65; color: var(--text-primary); margin-bottom: 1.1rem; }
+        .q-data-box {
+            background-color: var(--secondary-light); padding: 0.9rem 1.25rem; border-radius: var(--radius-sm);
+            border-left: 4px solid var(--secondary); margin: 0.85rem 0 1.2rem 0; font-size: 0.94rem; color: var(--primary);
+        }
+        .q-tasks { list-style: none; display: flex; flex-direction: column; gap: 0.55rem; margin-top: 0.75rem; }
+        .q-tasks li {
+            background: var(--background); padding: 0.75rem 1rem; border-radius: var(--radius-sm);
+            border: 1px solid var(--border); font-size: 0.96rem; color: var(--text-primary);
+        }
+        .q-tasks li strong { color: var(--primary); }
+
+        .board-table {
+            width: 100%; border-collapse: collapse; margin-top: 1rem; font-size: 0.9rem; background: #fff;
+        }
+        .board-table th {
+            background: var(--primary); color: #fff; padding: 0.65rem 0.75rem; text-align: center; font-weight: 700; border: 1px solid var(--primary-dark);
+        }
+        .board-table td {
+            padding: 0.65rem 0.75rem; border: 1px solid var(--border); text-align: center; color: var(--text-secondary);
+        }
+        .board-table td.left { text-align: left; font-weight: 700; color: var(--primary); background: var(--background); }
+
+        .action-dock {
+            background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-md);
+            padding: 1.5rem 2rem; display: flex; align-items: center; justify-content: space-between;
+            gap: 1.5rem; flex-wrap: wrap; box-shadow: var(--shadow-md); margin-top: 2.5rem;
+        }
+
+        @media (max-width: 850px) {
+            .formula-grid { grid-template-columns: 1fr; }
+        }
+        @media print {
+            body { background: #fff !important; color: #000 !important; padding: 0; }
+            header, .action-dock { display: none !important; }
+            .container { max-width: 100% !important; padding: 0 !important; }
+            .intro-card { background: #002060 !important; color: #fff !important; -webkit-print-color-adjust: exact; padding: 1.25rem !important; }
+            .question-card { border: 1px solid #CBD5E1 !important; page-break-inside: avoid; margin-bottom: 1.25rem !important; box-shadow: none !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container header-content">
+            <div class="brand-box">
+                <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="100" height="100" rx="16" fill="#002060"/>
+                    <path d="M20 75 V30 L50 30 L50 75" stroke="#FFFFFF" stroke-width="8" stroke-linejoin="round"/>
+                    <path d="M50 30 L80 30 L80 75" stroke="#FFFFFF" stroke-width="8" stroke-linejoin="round"/>
+                    <path d="M30 52 H70" stroke="#0080FF" stroke-width="8"/>
+                </svg>
+                <div class="brand-titles">
+                    <h1>CEST • Centro Universitário Santa Terezinha</h1>
+                    <p>Curso de Administração • Matemática Financeira • Prof. Msc. Philipe Sampaio Lima</p>
+                </div>
+            </div>
+            <div class="header-actions">
+                <a href="../index.html" class="btn-nav">⌂ Portal Principal</a>
+                <a href="gabarito.html" class="btn-nav gabarito">Ver Gabarito Passo a Passo &rarr;</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        
+        <section class="intro-card">
+            <span class="intro-badge">Unidade III • Lista de Exercícios para Resolução no Quadro</span>
+            <h2 class="intro-title">Estudo Comparativo Completo: Sistemas PRICE, SAC e SAA</h2>
+            <p class="intro-desc">
+                Lista de 10 questões estruturadas para resolução passo a passo em sala de aula, esgotando a mecânica operacional, construção de planilhas, apuração de juros totais, evolução do saldo devedor, ponto de inversão, amortização extraordinária e tomada de decisão gerencial entre os sistemas Francês (PRICE), Constante (SAC) e Americano (SAA).
+            </p>
+        </section>
+
+        <section class="formula-sheet">
+            <h3>Formulário Base de Apoio para Resolução</h3>
+            <div class="formula-grid">
+                <div class="formula-card">
+                    <h4>Sistema PRICE (Francês)</h4>
+                    <p>PMT = PV × [ i / (1 - (1 + i)^(-n)) ]</p>
+                    <p>J(t) = SD(t-1) × i</p>
+                    <p>A(t) = PMT - J(t)</p>
+                </div>
+                <div class="formula-card">
+                    <h4>Sistema SAC (Constante)</h4>
+                    <p>A = PV / n (Constante)</p>
+                    <p>J(t) = SD(t-1) × i</p>
+                    <p>PMT(t) = A + J(t)</p>
+                </div>
+                <div class="formula-card">
+                    <h4>Sistema SAA (Americano)</h4>
+                    <p>A(1 até n-1) = 0 | A(n) = PV</p>
+                    <p>J(t) = PV × i (Constante)</p>
+                    <p>PMT(1 até n-1) = J | PMT(n) = PV + J</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- QUESTÃO 01 -->
+        <article class="question-card">
+            <div class="q-header">
+                <span class="q-badge">Questão 01</span>
+                <span class="q-theme">Construção Integral das 3 Tabelas (Nível Base)</span>
+            </div>
+            <p class="q-statement">
+                Uma distribuidora comercial em São Luís contrata um empréstimo de capital de giro no valor de <strong>R$ 12.000,00</strong>, para pagamento em <strong>3 parcelas mensais</strong>, à taxa de juros efetiva de <strong>5% ao mês</strong>.
+            </p>
+            <div class="q-data-box">
+                <strong>Parâmetros:</strong> PV = R$ 12.000,00 | n = 3 meses | i = 5% a.m. (0,05) | Fator Price [0,05 / (1 - 1,05^(-3))] = 0,36720856
+            </div>
+            <ul class="q-tasks">
+                <li><strong>a)</strong> Construa no quadro a planilha completa de amortização (Período, Prestação, Juros, Amortização e Saldo Devedor) pelo <strong>Sistema PRICE</strong>.</li>
+                <li><strong>b)</strong> Construa a planilha completa pelo <strong>Sistema SAC</strong>.</li>
+                <li><strong>c)</strong> Construa a planilha completa pelo <strong>Sistema Americano (SAA)</strong>.</li>
+                <li><strong>d)</strong> Compare o total de juros pagos e o desembolso total nos três modelos.</li>
+            </ul>
+        </article>
+
+        <!-- QUESTÃO 02 -->
+        <article class="question-card">
+            <div class="q-header">
+                <span class="q-badge">Questão 02</span>
+                <span class="q-theme">Confronto Direto da 1ª e da Última Prestação</span>
+            </div>
+            <p class="q-statement">
+                Uma indústria alimentícia deseja financiar uma máquina empacotadora no valor de <strong>R$ 60.000,00</strong> em <strong>6 meses</strong>, com taxa de <strong>2% ao mês</strong>. O diretor financeiro precisa apresentar à diretoria o impacto imediato e final no caixa em cada sistema.
+            </p>
+            <div class="q-data-box">
+                <strong>Parâmetros:</strong> PV = R$ 60.000,00 | n = 6 meses | i = 2% a.m. (0,02) | Fator Price [0,02 / (1 - 1,02^(-6))] = 0,17852581
+            </div>
+            <ul class="q-tasks">
+                <li><strong>a)</strong> Calcule o valor da <strong>1ª prestação</strong> e da <strong>6ª (última) prestação</strong> nos sistemas PRICE, SAC e SAA.</li>
+                <li><strong>b)</strong> Determine a diferença monetária entre a 1ª parcela do SAC e a parcela fixa da PRICE.</li>
+                <li><strong>c)</strong> Explique por que a última parcela do SAA exige um planejamento específico de tesouraria (fundo de amortização).</li>
+            </ul>
+        </article>
+
+        <!-- QUESTÃO 03 -->
+        <article class="question-card">
+            <div class="q-header">
+                <span class="q-badge">Questão 03</span>
+                <span class="q-theme">Apuração Analítica de Juros Totais e Economia Financeira</span>
+            </div>
+            <p class="q-statement">
+                Uma rede de farmácias financia <strong>R$ 100.000,00</strong> para abertura de uma nova filial, pelo prazo de <strong>10 meses</strong>, a uma taxa de <strong>3% ao mês</strong>. O banco oferece as três modalidades de amortização sem tarifas adicionais.
+            </p>
+            <div class="q-data-box">
+                <strong>Parâmetros:</strong> PV = R$ 100.000,00 | n = 10 meses | i = 3% a.m. (0,03) | Fator Price [0,03 / (1 - 1,03^(-10))] = 0,11723051
+            </div>
+            <ul class="q-tasks">
+                <li><strong>a)</strong> Calcule o <strong>Total de Juros Pagos</strong> ao final dos 10 meses no Sistema PRICE.</li>
+                <li><strong>b)</strong> Calcule o <strong>Total de Juros Pagos</strong> pelo Sistema SAC utilizando a fórmula da soma da PA: J_total = [ PV × i × (n + 1) ] / 2.</li>
+                <li><strong>c)</strong> Calcule o <strong>Total de Juros Pagos</strong> pelo Sistema SAA (J_total = PV × i × n).</li>
+                <li><strong>d)</strong> Apure a economia exata de juros ao optar pelo SAC em relação à PRICE e ao SAA.</li>
+            </ul>
+        </article>
+
+        <!-- QUESTÃO 04 -->
+        <article class="question-card">
+            <div class="q-header">
+                <span class="q-badge">Questão 04</span>
+                <span class="q-theme">Velocidade de Redução do Saldo Devedor Intermediário</span>
+            </div>
+            <p class="q-statement">
+                Uma transportadora financiou um caminhão de <strong>R$ 240.000,00</strong> em <strong>12 meses</strong>, à taxa de <strong>2% ao mês</strong>. Exatamente na metade do contrato (logo após o pagamento da <strong>6ª prestação</strong>), o gestor solicita um relatório sobre o quanto da dívida original já foi efetivamente amortizado.
+            </p>
+            <div class="q-data-box">
+                <strong>Parâmetros:</strong> PV = R$ 240.000,00 | n = 12 meses | t = 6º mês | i = 2% a.m. | PMT Price = R$ 22.694,30
+            </div>
+            <ul class="q-tasks">
+                <li><strong>a)</strong> Qual é o Saldo Devedor após a 6ª parcela no <strong>Sistema SAC</strong>?</li>
+                <li><strong>b)</strong> Qual é o Saldo Devedor após a 6ª parcela no <strong>Sistema SAA</strong>?</li>
+                <li><strong>c)</strong> Sabendo que o Saldo Devedor na PRICE após o 6º mês é obtido pelo valor presente das 6 parcelas restantes [PMT × ((1 - 1,02^(-6)) / 0,02)], calcule esse saldo e compare o percentual já amortizado da dívida nos três sistemas.</li>
+            </ul>
+        </article>
+
+        <!-- QUESTÃO 05 -->
+        <article class="question-card">
+            <div class="q-header">
+                <span class="q-badge">Questão 05</span>
+                <span class="q-theme">Ponto de Inversão (Juros vs. Amortização) e Decaimento Linear</span>
+            </div>
+            <p class="q-statement">
+                Em um financiamento empresarial de <strong>R$ 80.000,00</strong>, contratado pelo prazo de <strong>8 meses</strong> à taxa de <strong>4% ao mês</strong>, deseja-se analisar o comportamento interno das parcelas no <strong>4º mês</strong> e no <strong>5º mês</strong>.
+            </p>
+            <div class="q-data-box">
+                <strong>Parâmetros:</strong> PV = R$ 80.000,00 | n = 8 meses | i = 4% a.m. | PMT Price = R$ 11.882,23 | SD Price no Mês 3 = R$ 53.063,11
+            </div>
+            <ul class="q-tasks">
+                <li><strong>a)</strong> No <strong>Sistema PRICE</strong>, calcule os juros e a amortização dos meses 4 e 5, identificando em qual período ocorre a <strong>inversão</strong> (quando a amortização supera os juros na parcela).</li>
+                <li><strong>b)</strong> No <strong>Sistema SAC</strong>, calcule a prestação e os juros dos meses 4 e 5, demonstrando o valor constante de queda da prestação mensal (Razão = A × i).</li>
+                <li><strong>c)</strong> No <strong>Sistema SAA</strong>, informe os juros e a amortização nos meses 4 e 5.</li>
+            </ul>
+        </article>
+
+        <!-- QUESTÃO 06 -->
+        <article class="question-card">
+            <div class="q-header">
+                <span class="q-badge">Questão 06</span>
+                <span class="q-theme">Engenharia Reversa: Identificando o Sistema por Dados Parciais</span>
+            </div>
+            <p class="q-statement">
+                Um auditor contábil recebeu três extratos bancários sem o cabeçalho identificando o sistema de amortização contratado. Todos referem-se a empréstimos de <strong>R$ 50.000,00</strong> a <strong>3% ao mês</strong> em <strong>5 meses</strong>:
+            </p>
+            <div class="q-data-box">
+                <strong>Extrato X:</strong> 1ª Prestação = R$ 11.500,00 | 2ª Prestação = R$ 11.200,00 | 3ª Prestação = R$ 10.900,00<br>
+                <strong>Extrato Y:</strong> 1ª Prestação = R$ 1.500,00 | 2ª Prestação = R$ 1.500,00 | 5ª Prestação = R$ 51.500,00<br>
+                <strong>Extrato Z:</strong> 1ª Prestação = R$ 10.917,73 | 2ª Prestação = R$ 10.917,73 | 5ª Prestação = R$ 10.917,73
+            </div>
+            <ul class="q-tasks">
+                <li><strong>a)</strong> Identifique qual sistema de amortização corresponde a cada extrato (X, Y e Z), justificando matematicamente.</li>
+                <li><strong>b)</strong> Calcule a <strong>amortização</strong> e os <strong>juros</strong> contidos na <strong>2ª prestação</strong> de cada um dos três extratos.</li>
+            </ul>
+        </article>
+
+        <!-- QUESTÃO 07 -->
+        <article class="question-card">
+            <div class="q-header">
+                <span class="q-badge">Questão 07</span>
+                <span class="q-theme">Amortização Extraordinária e Quitação Antecipada</span>
+            </div>
+            <p class="q-statement">
+                Uma clínica odontológica financiou equipamentos por <strong>R$ 90.000,00</strong> em <strong>6 meses</strong> à taxa de <strong>2% ao mês</strong>. Após pagar rigorosamente as <strong>2 primeiras prestações</strong>, a empresa recebe uma restituição tributária e decide <strong>quitar integralmente o saldo devedor</strong> na data do 2º vencimento.
+            </p>
+            <div class="q-data-box">
+                <strong>Parâmetros:</strong> PV = R$ 90.000,00 | n = 6 meses | i = 2% a.m. | PMT Price = R$ 16.067,32
+            </div>
+            <ul class="q-tasks">
+                <li><strong>a)</strong> Calcule o valor exato da quitação antecipada (Saldo Devedor no Mês 2) no <strong>Sistema PRICE</strong>.</li>
+                <li><strong>b)</strong> Calcule o valor exato da quitação antecipada no <strong>Sistema SAC</strong>.</li>
+                <li><strong>c)</strong> Calcule o valor exato da quitação antecipada no <strong>Sistema SAA</strong>.</li>
+                <li><strong>d)</strong> Some o total desembolsado pela clínica (1ª parcela + 2ª parcela + quitação) em cada sistema e analise o custo financeiro efetivo da operação encerrada no 2º mês.</li>
+            </ul>
+        </article>
+
+        <!-- QUESTÃO 08 -->
+        <article class="question-card">
+            <div class="q-header">
+                <span class="q-badge">Questão 08</span>
+                <span class="q-theme">Impacto de Carência com Capitalização de Juros</span>
+            </div>
+            <p class="q-statement">
+                Uma agroindústria contrata financiamento de <strong>R$ 100.000,00</strong> com taxa de <strong>2% ao mês</strong>. O contrato prevê <strong>2 meses de carência</strong> (sem nenhum pagamento de juros ou principal nesse período, capitalizando os juros ao saldo devedor) seguidos de <strong>4 parcelas mensais</strong> de amortização.
+            </p>
+            <div class="q-data-box">
+                <strong>Parâmetros:</strong> PV Inicial = R$ 100.000,00 | Carência = 2 meses (capitalizada) | Amortização = 4 meses | i = 2% a.m. | Fator Price (n=4; i=2%) = 0,26262375
+            </div>
+            <ul class="q-tasks">
+                <li><strong>a)</strong> Calcule o <strong>Saldo Devedor Capitalizado</strong> ao final do 2º mês de carência [SD_2 = PV × (1 + i)^2].</li>
+                <li><strong>b)</strong> A partir desse novo saldo, calcule o valor da prestação fixa nos 4 meses seguintes pelo <strong>Sistema PRICE</strong>.</li>
+                <li><strong>c)</strong> A partir do saldo capitalizado, calcule a amortização constante e a 1ª prestação (Mês 3) pelo <strong>Sistema SAC</strong>.</li>
+                <li><strong>d)</strong> Informe o valor das parcelas nos meses 3, 4, 5 e 6 caso o contrato opere pelo <strong>Sistema SAA</strong> após a carência.</li>
+            </ul>
+        </article>
+
+        <!-- QUESTÃO 09 -->
+        <article class="question-card">
+            <div class="q-header">
+                <span class="q-badge">Questão 09</span>
+                <span class="q-theme">Quadro-Síntese Comparativo Estrutural</span>
+            </div>
+            <p class="q-statement">
+                Complete no quadro a matriz comparativa abaixo sintetizando o comportamento teórico e matemático das variáveis fundamentais nos sistemas <strong>PRICE</strong>, <strong>SAC</strong> e <strong>SAA</strong> (considerando taxa de juros constante e ausência de correção monetária):
+            </p>
+            <table class="board-table">
+                <thead>
+                    <tr>
+                        <th style="width: 28%;">Critério de Análise</th>
+                        <th style="width: 24%;">Sistema PRICE (Francês)</th>
+                        <th style="width: 24%;">Sistema SAC (Constante)</th>
+                        <th style="width: 24%;">Sistema SAA (Americano)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="left">Valor das Prestações (PMT)</td>
+                        <td>?</td>
+                        <td>?</td>
+                        <td>?</td>
+                    </tr>
+                    <tr>
+                        <td class="left">Valor das Amortizações (A)</td>
+                        <td>?</td>
+                        <td>?</td>
+                        <td>?</td>
+                    </tr>
+                    <tr>
+                        <td class="left">Valor dos Juros Periódicos (J)</td>
+                        <td>?</td>
+                        <td>?</td>
+                        <td>?</td>
+                    </tr>
+                    <tr>
+                        <td class="left">Evolução do Saldo Devedor</td>
+                        <td>?</td>
+                        <td>?</td>
+                        <td>?</td>
+                    </tr>
+                    <tr>
+                        <td class="left">Ranking de Juros Totais Pagos</td>
+                        <td>?</td>
+                        <td>?</td>
+                        <td>?</td>
+                    </tr>
+                </tbody>
+            </table>
+        </article>
+
+        <!-- QUESTÃO 10 -->
+        <article class="question-card">
+            <div class="q-header">
+                <span class="q-badge">Questão 10</span>
+                <span class="q-theme">Tomada de Decisão Gerencial e Fluxo de Caixa</span>
+            </div>
+            <p class="q-statement">
+                Uma construtora precisa captar <strong>R$ 300.000,00</strong> pelo prazo de <strong>5 meses</strong> à taxa de <strong>2% ao mês</strong> para concluir uma obra comercial. O cronograma de receitas da empresa apresenta três cenários possíveis de geração de caixa livre:
+            </p>
+            <div class="q-data-box">
+                <strong>Cenário 1:</strong> A empresa possui folga de caixa imediata nos primeiros meses e deseja minimizar ao máximo a despesa financeira total (juros) da obra.<br>
+                <strong>Cenário 2:</strong> A empresa só receberá a venda das unidades comerciais no 5º mês, dispondo nos meses 1 a 4 apenas de recursos para cobrir os encargos mensais.<br>
+                <strong>Cenário 3:</strong> O orçamento operacional exige desembolsos mensais rigorosamente uniformes para manter o equilíbrio do capital de giro.
+            </div>
+            <ul class="q-tasks">
+                <li><strong>a)</strong> Calcule a <strong>1ª prestação</strong>, a <strong>5ª prestação</strong> e o <strong>Total de Juros</strong> para cada um dos três sistemas (PRICE, SAC e SAA) nessa operação de R$ 300.000,00 (Fator Price n=5, i=2%: 0,21215839).</li>
+                <li><strong>b)</strong> Indique e justifique tecnicamente qual sistema de amortização deve ser escolhido em cada um dos três cenários gerenciais apresentados.</li>
+            </ul>
+        </article>
+
+        <div class="action-dock">
+            <div>
+                <h4 style="color:var(--primary); font-size:1.1rem; font-weight:800;">Material Estático para Quadro e Projeção</h4>
+                <p style="font-size:0.85rem; color:var(--text-secondary);">Consulte o gabarito completo com todas as memórias de cálculo e tabelas resolvidas passo a passo.</p>
+            </div>
+            <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
+                <button class="btn-nav" onclick="window.print()">🖨️ Imprimir Lista</button>
+                <a href="gabarito.html" class="btn-nav gabarito">Abrir Gabarito Passo a Passo &rarr;</a>
+            </div>
+        </div>
+
+    </main>
+
+</body>
+</html>
